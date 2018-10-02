@@ -1,6 +1,6 @@
 <template>
   <div class="full-width center-content">
-    <h1>Minimal Vue + Webpack + Auto reload</h1>
+    <news-component name="Babel" />
   </div>
 </template>
 
@@ -14,3 +14,13 @@
   align-items: center;
 }
 </style>
+
+<script>
+import NewsComponent from './components/NewsComponent.vue'
+
+export default {
+  components: {
+    NewsComponent
+  }
+}
+</script>
