@@ -6,9 +6,8 @@
           <h4>
               {{ (new Date(article.dateCreated)).toLocaleDateString("fr-FR", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }) }}
       </h4>
-    <article >
-
-      {{ article.body }}
+    <article>
+      <span v-html="article.body"></span>
     </article>
     
   </div>
@@ -26,9 +25,7 @@ export default {
 </script>
 
 <style scoped>
-.article {
-  /* width:800px; */
-}
+
 article {
   width:100%;
   height: 100%;
@@ -39,6 +36,11 @@ article {
   column-rule-width:1px;
   column-gap:40px;
   text-align:justify;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 900px) {
@@ -53,4 +55,5 @@ article {
     column-count: 4;
   }
 }
+
 </style>

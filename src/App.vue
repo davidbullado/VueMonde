@@ -1,18 +1,18 @@
 <template>
 <div class="viewport">
-  <div class="scroll column side">
+  <nav class="scroll column side">
       <news-component
           v-for="news in newsfeed"
           v-bind:news="news"
           v-model="article"
           v-bind:key="news.id"
       ></news-component>
-  </div>
-  <div class="scroll column middle">
+  </nav>
+  <main class="scroll column middle">
     <article-component
       v-bind:article="article">
     </article-component>
-  </div>
+  </main>
 </div>
 </template>
 

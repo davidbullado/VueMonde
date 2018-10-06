@@ -7,6 +7,10 @@ body {
     font-family: 'Merriweather', serif;
     padding: 2%
 }
+.article h2 {
+    font-size:medium;
+    /* width:800px; */
+  }
 
 .column {
     float: left;
@@ -50,4 +54,8 @@ body {
 .column.middle {
     width: 70%;
 }
+}
+
+.link {
+    cursor: pointer;
 }

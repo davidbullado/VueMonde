@@ -1,12 +1,15 @@
 <template>
   <div class="article">
-    <h3>{{ news.title }}</h3>
-    <p>
-      {{ (new Date(news.datetime)).toLocaleDateString("fr-FR", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }) }}
-    </p>
-    <p>
+    <details class="link" v-on:click="loadArticle">
+      <summary>
+        <time :datetime="news.datetime">{{ datetime }}</time>
+        <h3>{{ news.title }}</h3>
+      </summary>
+
       {{ news.summary }}
-      <button v-on:click="loadArticle">link</button>
+    </details>
+    <p>
+      <button class="link" v-on:click="loadArticle">link</button>
     </p>
   </div>
 </template>
@@ -19,6 +22,11 @@ export default {
     news: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    datetime : function () {
+      return (new Date(this.news.datetime)).toLocaleDateString("fr-FR", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' });
     }
   },
   methods: {
