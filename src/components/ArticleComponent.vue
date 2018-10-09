@@ -1,12 +1,14 @@
 <template>
   <div class="article">
+    <span v-if="'picture' in article" v-html="article.picture"></span>
+    <img v-else :src="article.image.url"/>
     <h1>{{ article.headline }}</h1>
     <h3>{{ article.description }}</h3>
-    <img :src="article.image.url" />
-          <h4>
-              {{ (new Date(article.dateCreated)).toLocaleDateString("fr-FR", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }) }}
-      </h4>
-    <article>
+    <h4>
+        {{ (new Date(article.dateCreated)).toLocaleDateString("fr-FR", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }) }}
+    </h4>
+    <span v-if="article.articleType==='reportage'" v-html="article.body"></span>
+    <article v-else>
       <span v-html="article.body"></span>
     </article>
     

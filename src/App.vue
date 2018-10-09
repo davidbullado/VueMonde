@@ -1,11 +1,11 @@
 <template>
 <div class="viewport">
-  <nav class="scroll column side">
+  <nav id="sidebar" class="scroll column side">
       <news-component
           v-for="news in newsfeed"
           v-bind:news="news"
           v-model="article"
-          v-bind:key="news.id"
+          v-bind:key="news.hlink"
       ></news-component>
   </nav>
   <main class="scroll column middle">
@@ -19,19 +19,11 @@
 <script>
 import NewsComponent from './components/NewsComponent.vue'
 import ArticleComponent from './components/ArticleComponent.vue'
-import {getArticle} from './api/api.js'
+import {getArticle, API_URL} from './api/api.js'
 import '../assets/app.css'
+//var API_URL = "http://127.0.0.1:5001";
 
-var API_URL = "http://127.0.0.1:5001";
 
-function getNews() {
-  return fetch(API_URL+'/news')
-  .then(function(response) {
-    console.log(response)
-    // handle success
-    return response.json();
-  });
-}
 
 export default {
   components: {
@@ -39,7 +31,7 @@ export default {
     ArticleComponent
   },
   created() {
-    getNews()
+    this.getNews()
       .then( data => {
         this.datanews = data ;
         getArticle(data[0].hlink).then(data => {
@@ -50,7 +42,9 @@ export default {
   data: function() {
     return {
       datanews: [{"id": 0, "datetime": "2018-09-30T09:00:24+02:00", "title": "Please wait, loading.", "summary": ""}],
-      dataarticle: {"title": "Please wait, loading.", "datetime": "2018-09-30T09:00:24+02:00", "summary": ""  }
+      dataarticle: {"title": "Please wait, loading.", "datetime": "2018-09-30T09:00:24+02:00", "summary": ""  },
+      page: 1,
+      loading: false
     }
   },
   computed: {
@@ -65,6 +59,35 @@ export default {
         this.dataarticle = article;
       }
     }
+  },
+  methods: {
+    scroll: function (datanews) {
+      let mySidebar = document.getElementById('sidebar');
+      mySidebar.onscroll = () => {
+        let bottomOfWindow = mySidebar.scrollTop + mySidebar.clientHeight === mySidebar.scrollHeight;
+        if (bottomOfWindow && !this.loading) {
+          this.loading = true;
+          mySidebar.scrollTop--;
+          this.page++
+          this.getNews(this.page)
+            .then( data => {
+              console.log(data)
+              this.datanews = this.datanews.concat(data)  ;
+              this.loading = false;
+            })
+        }
+      };
+    },
+    getNews(page=1) {
+      return fetch(API_URL+'/news/'+page)
+      .then(function(response) {
+        // handle success
+        return response.json();
+      });
+    }
+  },
+  mounted: function() {
+    this.scroll(this.datanews);
   }
 }
 </script>
