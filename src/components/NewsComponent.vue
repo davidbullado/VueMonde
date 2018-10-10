@@ -1,13 +1,7 @@
 <template>
   <div class="article">
-    <details class="link">
-      <summary>
-        <time :datetime="news.datetime">{{ datetime }}</time>
-        <h3 v-on:click="loadArticle">{{ news.title }}</h3>
-      </summary>
-
-      {{ news.summary }}
-    </details>
+    <time :datetime="news.datetime">{{ datetime }}</time>
+    <h3 :title="news.summary" class="link" v-on:click="loadArticle">{{ news.title }}</h3>
   </div>
 </template>
 
