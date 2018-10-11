@@ -21,9 +21,6 @@ import NewsComponent from './components/NewsComponent.vue'
 import ArticleComponent from './components/ArticleComponent.vue'
 import {getArticle, API_URL} from './api/api.js'
 import '../assets/app.css'
-//var API_URL = "http://127.0.0.1:5001";
-
-
 
 export default {
   components: {
