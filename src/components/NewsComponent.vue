@@ -1,12 +1,14 @@
 <template>
-  <div class="article">
+  <div class="feed">
     <time :datetime="news.datetime">{{ datetime }}</time>
-    <h3 :title="news.summary" class="link" v-on:click="loadArticle">{{ news.title }}</h3>
+    <router-link tag="h3" :to="{ name: 'article', params: { hlink: news.hlink }}">
+      <a :title="news.summary" class="link">{{ news.title }}</a>
+    </router-link>
   </div>
 </template>
 
 <script>
-import {getArticle} from '../api/api.js'
+
 
 export default {
   props: {
@@ -18,13 +20,6 @@ export default {
   computed: {
     datetime : function () {
       return (new Date(this.news.datetime)).toLocaleDateString("fr-FR", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' });
-    }
-  },
-  methods: {
-    loadArticle: function () {
-      getArticle(this.news.hlink).then(data => {
-          this.$emit('input', data)
-      })
     }
   }
 }

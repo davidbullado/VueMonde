@@ -3,9 +3,20 @@
 const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const utils = require('./utils')
 
 module.exports = {
   mode: 'development',
+
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'assets': utils.resolve('assets'),
+      'api': utils.resolve('src/api'),
+      'pages': utils.resolve('src/pages'),
+      'components': utils.resolve('src/components')
+    }
+  },
 
   entry: [
     './src/app.js'
@@ -18,10 +29,10 @@ module.exports = {
     }
   },
 
-  output: {
+/*  output: {
     path: __dirname + '/dist',
     filename: 'index_bundle.js'
-  },
+  }, */
 
   module: {
     rules: [
