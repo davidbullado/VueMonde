@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@material/card": "^0.40.1",
+    "dropcap.js": "^1.0.1",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },

@@ -22,6 +22,7 @@
 </template>
 <script>
 import {getArticle} from 'api/api'
+import {Dropcap} from 'dropcap.js/dropcap.js'
 
 export default {
   name: 'Article',
@@ -42,7 +43,8 @@ export default {
   methods: {
     loadArticle: function () {
       getArticle(this.hlink).then(data => {
-          this.article = data
+          this.article = data;
+
       })
     }
   },
@@ -67,6 +69,20 @@ export default {
         return dateCreat.toLocaleDateString('fr-FR', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' });
       }
       return '';
+    }
+  },
+  updated() {
+
+    if (document.getElementsByClassName("dropcap").length === 0){
+      var pArr = document.querySelectorAll("article p");
+      pArr.forEach(p => {
+        var firstLetter = p.innerText.charAt(0);
+        
+        if (!p.innerText.match(/.*Lire aussi.*/) && firstLetter.match(/[a-z]/i))
+          p.innerHTML = '<span class="dropcap">'+firstLetter.charAt(0)+'</span>'+p.innerHTML.substr(1,p.innerHTML.length-1);
+      })
+      var dropcaps = document.querySelectorAll(".dropcap");
+      window.Dropcap.layout(dropcaps, 2);
     }
   }
 }
@@ -109,6 +125,10 @@ article {
   column-rule-width:1px;
   column-gap:40px;
   text-align:justify;
+}
+
+.dropcap {
+  color: gold;
 }
 
 img {

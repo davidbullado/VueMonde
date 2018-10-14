@@ -1,9 +1,13 @@
 @import "@material/card/mdc-card";
 
-@import url('https://fonts.googleapis.com/css?family=Merriweather');
+//@import url('https://fonts.googleapis.com/css?family=Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
+
 
 html {
-  font-family: 'Merriweather', serif;
+  //font-family: 'Merriweather', serif;
+  font-family: 'Source Serif Pro', serif;
+  font-size:110%;
 }
 body {
     margin:0;
@@ -15,7 +19,8 @@ body {
     padding: 0;
 }
 article h2 {
-    font-size:medium;
+    color:#006288;
+    font-size:1rem;
 }
 
 .article > h3 {
@@ -61,19 +66,24 @@ article h2 {
 }
 
 .column.side h3 {
-  font-size:1em;
+  font-size:1rem;
   margin: 1vh 0px;
 }
 .column.side time {
   color: #818181;
-  font-size:1em;
+  font-size:1rem;
 }
 
+.dropcap {
+  color: #006288;
+  text-shadow: 1px 1px 5px grey;
+  margin:0 4px 0 0;
+}
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 370px) {
   html {
-    font-size:small;
+    font-size:normal;
   }
   .column.side {
     width: 100%;
@@ -85,10 +95,10 @@ article h2 {
   }
   .column.side h3 {
     margin: 0;
-    font-size:x-small;
+    font-size:1rem;
   }
   .column.side time {
-    font-size:x-small;
+    font-size:1rem;
     padding:0;
     display:none;
   }
@@ -108,18 +118,18 @@ article h2 {
     padding: 0 5%;
   }
   .article > h1 {
-      font-size: 2em;
+      font-size: 2rem;
   }
   .article > h2{
-      font-size: 1.5em;
+      font-size: 1.5rem;
    
   }
   .article > h3, .article > h4 {
-      font-size: 1em;
+      font-size: 1rem;
       margin: 1%;
   }
   article h2 {
-      font-size: 1em;
+      font-size: 1rem;
       margin: 1%;
   }
 }
