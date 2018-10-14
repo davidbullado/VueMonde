@@ -1,16 +1,23 @@
 <template>
-  <div v-if="article != null" class="article">
-    <span v-if="'picture' in article" v-html="article.picture"></span>
-    <img v-else-if="'image' in article" :src="article.image.url"/>
-    <h1>{{ article.headline }}</h1>
-    <h2>{{ article.description }}</h2>
-    <h3>
-        {{ humanDate }}
-    </h3>
-    <span v-if="article.articleType==='reportage'" v-html="article.body"></span>
-    <article v-else>
-      <span v-html="article.body"></span>
-    </article>
+  <div v-if="article != null" class="article mdc-card">
+    <div v-if="'image' in article" class="article__media mdc-card__media" >
+      <div class="mdc-card__media article__media-image" :style="{ backgroundImage: 'url(' + article.image.url + ')' }" >
+      </div>
+      <div class="article__media-content mdc-card__media-content">
+        <h1>{{ article.headline }}</h1>
+      </div>
+    </div>
+    <span v-else-if="'picture' in article" v-html="article.picture"></span>
+    <div class="article__secondary">
+      <h2>{{ article.description }}</h2>
+      <h3>
+          {{ humanDate }}
+      </h3>
+      <span v-if="article.articleType==='reportage'" v-html="article.body"></span>
+      <article v-else>
+        <span v-html="article.body"></span>
+      </article>
+    </div>
   </div>
 </template>
 <script>
@@ -66,7 +73,33 @@ export default {
 </script>
 
 <style scoped>
-
+.article {
+  margin:2%;
+  border-radius: 8px;
+}
+.article__secondary{
+  padding: 0 5% 5% 5%;
+}
+.article__media {
+  background-size: cover;
+  position:relative;
+  overflow: hidden;
+}
+.article__media-content {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding:2%;
+  color:#fff;
+  top: auto;
+  text-align:center;
+}
+.article__media-image {
+  height:400px;
+  filter:blur(1.5px);
+  transform: scale(1.01);
+}
+.article > h1 {
+  margin:0px;
+}
 article {
   width:100%;
   height: 100%;

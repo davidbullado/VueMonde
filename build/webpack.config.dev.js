@@ -29,11 +29,6 @@ module.exports = {
     }
   },
 
-/*  output: {
-    path: __dirname + '/dist',
-    filename: 'index_bundle.js'
-  }, */
-
   module: {
     rules: [
       {
@@ -45,6 +40,19 @@ module.exports = {
         use: [
           'vue-style-loader',
           'css-loader'
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: ['node_modules']
+            }
+          }
         ]
       },
       {

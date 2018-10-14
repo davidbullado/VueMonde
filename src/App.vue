@@ -17,7 +17,7 @@
 import NewsComponent from 'components/NewsComponent.vue'
 import ArticleComponent from 'components/ArticleComponent.vue'
 import {getArticle, API_URL} from 'api/api'
-import 'assets/app.css'
+
 
 export default {
   components: {
