@@ -22,7 +22,7 @@
 </template>
 <script>
 import {getArticle} from 'api/api'
-import {Dropcap} from 'dropcap.js/dropcap.js'
+import {Dropcap} from 'dropcap.js/dropcap.min.js'
 
 export default {
   name: 'Article',
