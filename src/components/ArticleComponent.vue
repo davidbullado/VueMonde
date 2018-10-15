@@ -75,14 +75,14 @@ export default {
 
     if (document.getElementsByClassName("dropcap").length === 0){
       var pArr = document.querySelectorAll(".contenu_article > p");
-      pArr.forEach(p => {
+      if (pArr.length > 0) {
+        var p = pArr[0]
         var firstLetter = p.innerHTML.charAt(0);
-        
         if (!p.innerText.match(/.*Lire aussi.*/) && firstLetter.match(/[a-z]/i))
           p.innerHTML = '<span class="dropcap">'+firstLetter.charAt(0)+'</span>'+p.innerHTML.substr(1,p.innerHTML.length-1);
-      })
+      }
       var dropcaps = document.querySelectorAll(".dropcap");
-      window.Dropcap.layout(dropcaps, 2);
+      window.Dropcap.layout(dropcaps, 3);
     }
   }
 }
