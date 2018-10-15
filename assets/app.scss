@@ -1,13 +1,13 @@
 @import "@material/card/mdc-card";
 
-//@import url('https://fonts.googleapis.com/css?family=Merriweather');
-@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,400i,700');
+//@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
 
 
 html {
-  //font-family: 'Merriweather', serif;
-  font-family: 'Source Serif Pro', serif;
-  font-size:110%;
+  font-family: 'Merriweather', serif;
+ // font-family: 'Source Serif Pro', serif;
+  //font-size:110%;
 }
 body {
     margin:0;
@@ -23,8 +23,12 @@ article h2 {
     font-size:1rem;
 }
 
+.article > h1 {
+    margin:0px;
+}
+
 .article > h3 {
-  color: #3A3A3A;
+    color: #3A3A3A;
 }
 
 .column {
@@ -65,6 +69,14 @@ article h2 {
     background-color: #F4F4F4;
 }
 
+.article a {
+    text-decoration: none;
+    color: #133962;
+}
+.article a:hover {
+    color: #349de8;
+}
+
 .column.side h3 {
   font-size:1rem;
   margin: 1vh 0px;
@@ -75,9 +87,19 @@ article h2 {
 }
 
 .dropcap {
-  color: #006288;
-  text-shadow: 1px 1px 5px grey;
-  margin:0 4px 0 0;
+  color: #233e48;
+  text-shadow: 1px 1px 3px #5fa6c1;
+  margin:0 5px 0 0;
+  font-weight:300;
+}
+
+blockquote {
+    margin: 0;
+    padding:0 20px 20px 20px;
+    border-radius: 8px;
+    width:100%;
+    box-sizing: border-box;
+    border: 1px solid #e1e8ed;
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */

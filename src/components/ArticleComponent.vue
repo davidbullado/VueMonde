@@ -10,12 +10,12 @@
     <span v-else-if="'picture' in article" v-html="article.picture"></span>
     <div class="article__secondary">
       <h2>{{ article.description }}</h2>
-      <h3>
+      <h3 class="datehour">
           {{ humanDate }}
       </h3>
       <span v-if="article.articleType==='reportage'" v-html="article.body"></span>
-      <article v-else>
-        <span v-html="article.body"></span>
+      <article v-else v-html="article.body">
+        <span ></span>
       </article>
     </div>
   </div>
@@ -74,9 +74,9 @@ export default {
   updated() {
 
     if (document.getElementsByClassName("dropcap").length === 0){
-      var pArr = document.querySelectorAll("article p");
+      var pArr = document.querySelectorAll(".contenu_article > p");
       pArr.forEach(p => {
-        var firstLetter = p.innerText.charAt(0);
+        var firstLetter = p.innerHTML.charAt(0);
         
         if (!p.innerText.match(/.*Lire aussi.*/) && firstLetter.match(/[a-z]/i))
           p.innerHTML = '<span class="dropcap">'+firstLetter.charAt(0)+'</span>'+p.innerHTML.substr(1,p.innerHTML.length-1);
@@ -89,6 +89,11 @@ export default {
 </script>
 
 <style scoped>
+
+.datehour {
+  text-align: right;
+}
+
 .article {
   margin:2%;
   border-radius: 8px;
@@ -108,14 +113,16 @@ export default {
   top: auto;
   text-align:center;
 }
+.article__media-content h1 {
+  font-size:2.5rem;
+  
+}
 .article__media-image {
   height:400px;
   filter:blur(1.5px);
   transform: scale(1.01);
 }
-.article > h1 {
-  margin:0px;
-}
+
 article {
   width:100%;
   height: 100%;
@@ -125,10 +132,7 @@ article {
   column-rule-width:1px;
   column-gap:40px;
   text-align:justify;
-}
-
-.dropcap {
-  color: gold;
+  line-height: 1.4;
 }
 
 img {
