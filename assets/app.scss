@@ -18,9 +18,15 @@ body {
 .article {
     padding: 0;
 }
+
 article h2 {
     color:#006288;
     font-size:1rem;
+}
+
+h2.intertitre {
+    text-transform: uppercase;
+    text-align :left;
 }
 
 .article > h1 {
@@ -86,16 +92,30 @@ article h2 {
   font-size:1rem;
 }
 
+figure {
+    margin: 0;
+    display: inline;
+}
+
+article img {
+    max-width: 100%;
+    border-radius: 3px;
+    display:block;
+    margin: 10px 0;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .dropcap {
-  color: #233e48;
-  text-shadow: 1px 1px 3px #5fa6c1;
+  /* color: #233e48; */
+  /* text-shadow: 1px 1px 3px #5fa6c1; */
   margin:0 5px 0 0;
   font-weight:300;
 }
 
 blockquote {
     margin: 0;
-    padding:0 20px 20px 20px;
+    padding:20px 20px 20px 20px;
     border-radius: 8px;
     width:100%;
     box-sizing: border-box;

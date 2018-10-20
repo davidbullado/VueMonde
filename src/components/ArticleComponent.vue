@@ -24,6 +24,9 @@
 import {getArticle} from 'api/api'
 import {Dropcap} from 'dropcap.js/dropcap.js'
 
+global.lmd = {}
+global.lmd.pic = require('lazyloadjs')();
+
 export default {
   name: 'Article',
   props: {
@@ -44,7 +47,7 @@ export default {
     loadArticle: function () {
       getArticle(this.hlink).then(data => {
           this.article = data;
-
+          document.title = this.article.headline;
       })
     }
   },
@@ -103,14 +106,14 @@ export default {
 }
 .article__media {
   background-size: cover;
-  position:relative;
+  position: relative;
   overflow: hidden;
 }
 .article__media-content {
   background-color: rgba(0, 0, 0, 0.7);
   padding:2%;
   color:#fff;
-  top: auto;
+  position:relative;
   text-align:center;
 }
 .article__media-content h1 {
@@ -118,9 +121,13 @@ export default {
   
 }
 .article__media-image {
-  height:400px;
+ /*  height:250px; */
   filter:blur(1.5px);
   transform: scale(1.01);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 article {
@@ -131,6 +138,7 @@ article {
   column-rule-color:rgb(211, 211, 211);
   column-rule-width:1px;
   column-gap:40px;
+  column-fill: auto;
   text-align:justify;
   line-height: 1.4;
 }
@@ -142,17 +150,8 @@ img {
 
 @media screen and (min-width: 800px) {
   article {
-    column-count: 2;
-  }
-}
-@media screen and (min-width: 1100px) {
-  article {
-    column-count: 3;
-  }
-}
-@media screen and (min-width: 1500px) {
-  article {
-    column-count: 4;
+    column-count: auto;
+    column-width: 300px;
   }
 }
 
